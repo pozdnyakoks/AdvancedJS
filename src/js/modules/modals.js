@@ -13,7 +13,14 @@ const modals = () => {
         modal.style.display = 'block';
         // document.body.classList.add('modal-open')
         document.body.style.overflow = 'hidden';
+        close.focus();
       })
+    })
+
+    window.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
     })
 
     const closeModal = () => {
