@@ -1,4 +1,4 @@
-const modals = () => {
+export const modals = () => {
   function bindModal(triggerSelector, modalSelector, closeSelector) {
     const triggers = document.querySelectorAll(triggerSelector);
     const modal = document.querySelector(modalSelector);
@@ -55,7 +55,3 @@ const modals = () => {
 
   // showModalByTime('.popup', 60000);
 };
-
-
-
-export default modals;
