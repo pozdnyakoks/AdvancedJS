@@ -1,4 +1,4 @@
-const tabsFunction = (headerSelector, tabsSelector, contentsSelector, activeClass) => {
+const tabsFunction = ({ headerSelector, tabsSelector, contentsSelector, activeClass }) => {
   const header = document.querySelector(headerSelector);
   const tabs = document.querySelectorAll(tabsSelector);
   const contents = document.querySelectorAll(contentsSelector);
@@ -21,7 +21,7 @@ const tabsFunction = (headerSelector, tabsSelector, contentsSelector, activeClas
   hideTabContent();
   showTabContent();
 
-  header.addEventListener('click', (ev) => {
+  const showTab = (ev) => {
     const target = ev.target;
     const selector = tabsSelector.replace(/\./, '')
     if (target &&
@@ -34,7 +34,17 @@ const tabsFunction = (headerSelector, tabsSelector, contentsSelector, activeClas
         }
       })
     }
+  }
+
+  header.addEventListener('click', (ev) => {
+    showTab(ev)
+  })
+
+  header.addEventListener('keydown', (ev) => {
+    if (ev.keyCode == 13) {
+      showTab(ev);
+    }
   })
 };
 
-export default tabsFunction;
+export { tabsFunction };
