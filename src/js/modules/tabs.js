@@ -1,4 +1,4 @@
-const tabsFunction = ({ headerSelector, tabsSelector, contentsSelector, activeClass }) => {
+export const tabsFunction = ({ headerSelector, tabsSelector, contentsSelector, activeClass }) => {
   const header = document.querySelector(headerSelector);
   const tabs = document.querySelectorAll(tabsSelector);
   const contents = document.querySelectorAll(contentsSelector);
@@ -41,10 +41,9 @@ const tabsFunction = ({ headerSelector, tabsSelector, contentsSelector, activeCl
   })
 
   header.addEventListener('keydown', (ev) => {
-    if (ev.keyCode == 13) {
+    if (ev.code == 'Enter') {
       showTab(ev);
     }
   })
 };
 
-export { tabsFunction };
