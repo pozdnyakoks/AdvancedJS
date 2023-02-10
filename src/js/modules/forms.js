@@ -47,7 +47,6 @@ export const forms = () => {
         })
         .catch(() => statusMessage.textContent = message.failure)
         .finally(() => {
-          console.log(statusMessage.textContent)
           clearInputs();
           setTimeout(() => {
             statusMessage.remove()
