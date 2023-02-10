@@ -1,8 +1,9 @@
 import './slider'
-import { modals, tabsFunction } from './modules/modules';
+import { modals, tabsFunction, forms } from './modules/modules';
 
 window.addEventListener('DOMContentLoaded', () => {
   modals();
+
   tabsFunction({
     headerSelector: '.glazing_slider',
     tabsSelector: '.glazing_block',
@@ -15,4 +16,6 @@ window.addEventListener('DOMContentLoaded', () => {
     contentsSelector: '.decoration_content > div > div',
     activeClass: 'after_click'
   })
+
+  forms();
 })
