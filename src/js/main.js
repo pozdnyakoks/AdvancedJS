@@ -1,7 +1,12 @@
 import './slider'
-import { modals, tabsFunction, forms } from './modules/modules';
+import { modals, tabsFunction, forms, changeModalState } from './modules/modules';
 
 window.addEventListener('DOMContentLoaded', () => {
+
+  const modalState = {};
+
+  changeModalState(modalState);
+
   modals();
 
   tabsFunction({
@@ -17,5 +22,13 @@ window.addEventListener('DOMContentLoaded', () => {
     activeClass: 'after_click'
   })
 
-  forms();
+  tabsFunction({
+    headerSelector: '.balcon_icons',
+    tabsSelector: '.balcon_icons_img',
+    contentsSelector: '.big_img > img',
+    activeClass: 'do_image_more',
+    display: 'inline-block'
+  })
+
+  forms(modalState);
 })

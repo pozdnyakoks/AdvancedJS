@@ -1,8 +1,15 @@
 export const modals = () => {
-  function bindModal(triggerSelector, modalSelector, closeSelector) {
+  function bindModal({ triggerSelector, modalSelector, closeSelector, closeClickOverlay = true }) {
     const triggers = document.querySelectorAll(triggerSelector);
     const modal = document.querySelector(modalSelector);
     const close = document.querySelector(closeSelector);
+    const windows = document.querySelectorAll('[data-modal]');
+
+    const closeWindows = () => {
+      windows.forEach(window => {
+        window.style.display = 'none';
+      })
+    }
 
     triggers.forEach(trigger => {
       trigger.addEventListener('click', (ev) => {
@@ -10,8 +17,9 @@ export const modals = () => {
           ev.preventDefault();
         }
 
+        closeWindows()
+
         modal.style.display = 'block';
-        // document.body.classList.add('modal-open')
         document.body.style.overflow = 'hidden';
         close.focus();
       })
@@ -24,8 +32,8 @@ export const modals = () => {
     })
 
     const closeModal = () => {
+      closeWindows();
       modal.style.display = 'none';
-      // document.body.classList.remove('modal-open')
       document.body.style.overflow = '';
     }
 
@@ -34,8 +42,9 @@ export const modals = () => {
     })
 
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeModal()
+      if (e.target === modal && closeClickOverlay) {
+        closeModal();
+        closeWindows();
       }
     })
   }
@@ -47,11 +56,33 @@ export const modals = () => {
     }, time);
   }
 
-  bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close')
-  bindModal('.phone_link', '.popup', '.popup .popup_close')
-  bindModal('.popup_calc_btn', '.popup_calc', '.popup_calc_close')
-  bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close', false)
-  bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close', false)
+  bindModal({
+    triggerSelector: '.popup_engineer_btn',
+    modalSelector: '.popup_engineer',
+    closeSelector: '.popup_engineer .popup_close'
+  })
+  bindModal({
+    triggerSelector: '.phone_link',
+    modalSelector: '.popup',
+    closeSelector: '.popup .popup_close'
+  })
+  bindModal({
+    triggerSelector: '.popup_calc_btn',
+    modalSelector: '.popup_calc',
+    closeSelector: '.popup_calc_close'
+  })
+  bindModal({
+    triggerSelector: '.popup_calc_button',
+    modalSelector: '.popup_calc_profile',
+    closeSelector: '.popup_calc_profile_close',
+    closeClickOverlay: false
+  })
+  bindModal({
+    triggerSelector: '.popup_calc_profile_button',
+    modalSelector: '.popup_calc_end',
+    closeSelector: '.popup_calc_end_close',
+    closeClickOverlay: false
+  })
 
-  // showModalByTime('.popup', 60000);
+  showModalByTime('.popup', 60000);
 };

@@ -1,13 +1,10 @@
-export const forms = () => {
+import { checkNumInputs } from "./checkNumInputs";
+
+export const forms = (state) => {
   const forms = document.querySelectorAll('form');
   const inputs = document.querySelectorAll('input');
-  const phoneInputs = document.querySelectorAll('input[name="user_phone"')
 
-  phoneInputs.forEach(phoneInput => {
-    phoneInput.addEventListener('input', () => {
-      phoneInput.value = phoneInput.value.replace(/\D/, '')
-    })
-  })
+  checkNumInputs('input[name="user_phone"');
 
   const message = {
     loading: 'Загрузка...',
@@ -40,6 +37,11 @@ export const forms = () => {
       form.appendChild(statusMessage);
 
       const formData = new FormData(form);
+      if (form.getAttribute('data-calc') === 'end') {
+        for (let key in state) {
+          formData.append(key, state[key])
+        }
+      }
 
       postData('assets/server.php', formData)
         .then(res => {
