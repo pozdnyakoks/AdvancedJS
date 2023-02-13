@@ -84,5 +84,5 @@ export const modals = () => {
     closeClickOverlay: false
   })
 
-  showModalByTime('.popup', 60000);
+  showModalByTime('.popup-modal', 3000);
 };
