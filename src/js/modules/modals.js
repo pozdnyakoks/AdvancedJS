@@ -24,7 +24,7 @@ export const modals = () => {
     const closeWindows = () => {
       windows.forEach(window => {
         window.style.display = 'none';
-        document.body.style.marginRight = `0px`;
+        document.body.style.marginRight = '0';
       })
     }
 
