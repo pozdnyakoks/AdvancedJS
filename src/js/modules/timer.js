@@ -11,13 +11,7 @@ export const timer = (id, deadline) => {
     const hours = Math.floor((time / 1000 * 60 * 60) % 24);
     const days = Math.floor((time / (1000 * 60 * 60 * 24)));
 
-    return {
-      'total': time,
-      'seconds': seconds,
-      'minutes': minutes,
-      'hours': hours,
-      'days': days
-    };
+    return { time, seconds, minutes, hours, days }
   };
 
   const setClock = (selector, endTime) => {
@@ -34,7 +28,7 @@ export const timer = (id, deadline) => {
       minutes.textContent = addZero(time.minutes);
       seconds.textContent = addZero(time.seconds);
 
-      if (time.total <= 0) {
+      if (time.time <= 0) {
         days.textContent = '00';
         hours.textContent = '00';
         minutes.textContent = '00';
