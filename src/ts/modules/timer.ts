@@ -4,7 +4,7 @@ export const timer = (id: string, deadline: string) => {
   };
 
   const getTimeRemaining = (endTime: string) => {
-    const time = Date.parse(endTime) - Date.parse(Date());
+    const time = Date.parse(endTime) - Date.parse(new Date().toString());
     const seconds = Math.floor((time / 1000) % 60);
     const minutes = Math.floor((time / 1000 / 60) % 60);
     const hours = Math.floor(((time / 1000) * 60 * 60) % 24);
