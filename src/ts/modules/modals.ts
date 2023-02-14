@@ -1,5 +1,5 @@
 export const modals = () => {
-  function bindModal({ triggerSelector: string, modalSelector: string, closeSelector: string, closeClickOverlay = true }) {
+  function bindModal({ triggerSelector, modalSelector, closeSelector, closeClickOverlay = true }: {triggerSelector: string, modalSelector: string, closeSelector: string, closeClickOverlay?: boolean}) {
 
     const calcScroll = (): number => {
       const div = document.createElement('div');

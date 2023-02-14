@@ -87,4 +87,4 @@ gulp.task("build", gulp.parallel("copy-html", "copy-assets", "build-ts"));
 
 gulp.task("build-prod", gulp.parallel("copy-html", "copy-assets", "build-prod-ts"));
 
-gulp.task("default", gulp.parallel("watch", "build"));
+// gulp.task("default", gulp.parallel("watch", "build"));
