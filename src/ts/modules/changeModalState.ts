@@ -1,6 +1,6 @@
 import { checkNumInputs } from './checkNumInputs';
 
-export const changeModalState = (state) => {
+export const changeModalState = (state: { [n: string]: string | number }) => {
   const windowForms = document.querySelectorAll('.balcon_icons_img');
   const windowWidth = document.querySelectorAll('#width');
   const windowHeight = document.querySelectorAll('#height');
@@ -10,7 +10,11 @@ export const changeModalState = (state) => {
   checkNumInputs('#width');
   checkNumInputs('#height');
 
-  const bindActionToElems = (event, elements, prop) => {
+  const bindActionToElems = (
+    event: string,
+    elements: NodeListOf<Element>,
+    prop: string | number
+  ) => {
     elements.forEach((element, i) => {
       element.addEventListener(event, () => {
         switch (element.nodeName) {
@@ -19,16 +23,16 @@ export const changeModalState = (state) => {
             break;
           case 'INPUT':
           case 'SELECT':
-            state[prop] = element.value;
+            state[prop] = (<HTMLInputElement>element).value;
             break;
         }
-      })
-    })
-  }
+      });
+    });
+  };
 
   bindActionToElems('click', windowForms, 'form');
   bindActionToElems('input', windowHeight, 'height');
   bindActionToElems('input', windowWidth, 'width');
   bindActionToElems('change', windowType, 'type');
-  bindActionToElems('change', windowProfiles, 'profile')
-}
+  bindActionToElems('change', windowProfiles, 'profile');
+};
