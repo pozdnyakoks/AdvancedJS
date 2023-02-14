@@ -12,14 +12,14 @@ export const images = () => {
 
   imgPopup.appendChild(bigImage);
 
-  workSection.addEventListener('click', (ev) => {
+  workSection.addEventListener('click', (ev: Event) => {
     ev.preventDefault();
-    let target = ev.target;
+    let target = ev.target as Element;
 
     if (target && target.classList.contains('preview')) {
       imgPopup.style.display = 'flex';
       document.body.style.overflow = 'hidden';
-      const path = target.parentNode.getAttribute('href');
+      const path = (<Element>target.parentNode).getAttribute('href');
       bigImage.setAttribute('src', path);
       bigImage.style.height = '80%';
       bigImage.style.padding = '20px';
@@ -29,6 +29,5 @@ export const images = () => {
       imgPopup.style.display = 'none';
       document.body.style.overflow = '';
     }
-  })
-
-}
+  });
+};
