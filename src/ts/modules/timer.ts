@@ -1,20 +1,19 @@
-export const timer = (id, deadline) => {
-
-  const addZero = (num) => {
-    return num <= 9 ? '0' + num : num;
-  }
-
-  const getTimeRemaining = (endTime) => {
-    const time = Date.parse(endTime) - Date.parse(new Date());
-    const seconds = Math.floor((time / 1000) % 60);
-    const minutes = Math.floor((time / 1000 / 60) % 60);
-    const hours = Math.floor((time / 1000 * 60 * 60) % 24);
-    const days = Math.floor((time / (1000 * 60 * 60 * 24)));
-
-    return { time, seconds, minutes, hours, days }
+export const timer = (id: string, deadline: string) => {
+  const addZero = (num: number) => {
+    return num <= 9 ? '0' + num : num.toString();
   };
 
-  const setClock = (selector, endTime) => {
+  const getTimeRemaining = (endTime: string) => {
+    const time = Date.parse(endTime) - Date.parse(new Date().toString());
+    const seconds = Math.floor((time / 1000) % 60);
+    const minutes = Math.floor((time / 1000 / 60) % 60);
+    const hours = Math.floor(((time / 1000) * 60 * 60) % 24);
+    const days = Math.floor(time / (1000 * 60 * 60 * 24));
+
+    return { time, seconds, minutes, hours, days };
+  };
+
+  const setClock = (selector: string, endTime: string) => {
     const timer = document.querySelector(selector);
     const days = timer.querySelector('#days');
     const hours = timer.querySelector('#hours');
@@ -36,14 +35,12 @@ export const timer = (id, deadline) => {
 
         clearInterval(timeInterval);
       }
-    }
+    };
 
     updateClock();
 
     const timeInterval = setInterval(updateClock, 1000);
-
   };
 
   setClock(id, deadline);
-
 };
